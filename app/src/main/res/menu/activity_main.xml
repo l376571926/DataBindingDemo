@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_simple_text"
+        android:title="简单文字显示" />
+    <item
+        android:id="@+id/menu_simple_image"
+        android:title="简单图片显示" />
+    <item
+        android:id="@+id/menu_simple_list"
+        android:title="简单列表显示" />
+    <item
+        android:id="@+id/menu_multi_list_item"
+        android:title="复杂列表显示" />
+</menu>
