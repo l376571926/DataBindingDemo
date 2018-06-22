@@ -8,6 +8,15 @@ public class User implements Serializable {
     private int age;
     private Object avatorUrl;
 
+    public User() {
+    }
+
+    public User(String name, int age, Object avatorUrl) {
+        this.name = name;
+        this.age = age;
+        this.avatorUrl = avatorUrl;
+    }
+
     public String getName() {
         return name;
     }
@@ -30,5 +39,14 @@ public class User implements Serializable {
 
     public void setAvatorUrl(Object avatorUrl) {
         this.avatorUrl = avatorUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", avatorUrl=" + avatorUrl +
+                '}';
     }
 }

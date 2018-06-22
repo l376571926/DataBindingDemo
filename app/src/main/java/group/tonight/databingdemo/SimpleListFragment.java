@@ -52,53 +52,17 @@ public class SimpleListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mRecyclerView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                String imageUrl = "http://cms-bucket.nosdn.127.net/catchpic/9/9d/9dcb73e71fea7b746c50bc3874f8c706.jpg?imageView&thumbnail=550x0";
 
-                mUserList.clear();
-                for (int i = 0; i < 100; i++) {
-                    User user = new User();
-                    user.setName("item：" + i);
-                    user.setAge(((int) (Math.random() * 100)));
-                    user.setAvatorUrl(imageUrl);
-                    mUserList.add(user);
-                }
-                mUserViewHolderAdapter.notifyDataSetChanged();
-            }
-        }, 3000);
+        mUserList.clear();
+        mUserList.addAll(MultiListItemFragment.createUserList());
+        mUserViewHolderAdapter.notifyDataSetChanged();
     }
 
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
-
-        static UserViewHolder create(LayoutInflater inflater, ViewGroup parent) {
-            ViewDataBinding inflate = DataBindingUtil.inflate(inflater, R.layout.simple_list_item_1, parent, false);
-            return new UserViewHolder(inflate);
-        }
-
-        private ViewDataBinding mViewDataBinding;
-
-        public ViewDataBinding getBinding() {
-            return mViewDataBinding;
-        }
-
-        public UserViewHolder(ViewDataBinding viewDataBinding) {
-            super(viewDataBinding.getRoot());
-            mViewDataBinding = viewDataBinding;
-        }
-
-        public void bindTo(User user) {
-            mViewDataBinding.setVariable(BR.user, user);
-            mViewDataBinding.executePendingBindings();
-        }
-    }
-
-    private RecyclerView.Adapter<UserViewHolder> mUserViewHolderAdapter = new RecyclerView.Adapter<UserViewHolder>() {
+    private RecyclerView.Adapter<DataBoundViewHolder> mUserViewHolderAdapter = new RecyclerView.Adapter<DataBoundViewHolder>() {
         @NonNull
         @Override
-        public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            final UserViewHolder holder = UserViewHolder.create(getLayoutInflater(), parent);
+        public DataBoundViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            final DataBoundViewHolder holder = DataBoundViewHolder.create(getLayoutInflater(), parent, viewType);
 
             holder.getBinding().addOnRebindCallback(new OnRebindCallback() {
                 @Override
@@ -121,13 +85,18 @@ public class SimpleListFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull DataBoundViewHolder holder, int position) {
             holder.bindTo(mUserList.get(position));
         }
 
         @Override
         public int getItemCount() {
             return mUserList.size();
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return R.layout.simple_list_item_1;
         }
     };
 }

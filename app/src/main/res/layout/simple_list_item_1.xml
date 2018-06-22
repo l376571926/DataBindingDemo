@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="user"
+            name="data"
             type="group.tonight.databingdemo.User" />
     </data>
 
@@ -17,20 +17,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{user.name}"
+            android:text="@{data.name}"
             tools:text="姓名" />
 
+        <!--
+        android:text="@{String.valueOf(data.age)}"
+        -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(user.age)}"
-            tools:text="年龄" />
+            android:text="@{@string/age_place_holder(data.age)}"
+            tools:text="年龄：27" />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:src="@{user.avatorUrl}"
+            android:src="@{data.avatorUrl}"
             tools:src="@drawable/face" />
 
     </LinearLayout>

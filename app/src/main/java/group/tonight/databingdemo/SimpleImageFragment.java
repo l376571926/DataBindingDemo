@@ -37,13 +37,10 @@ public class SimpleImageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewDataBinding inflate = DataBindingUtil.inflate(inflater, R.layout.fragment_simple_image, container, false);
-
+        //加载本地图片
         inflate.setVariable(BR.localImageId, R.drawable.face);
-
-//        String imageUrl = "https://www.baidu.com/img/bd_logo1.png";
-        String imageUrl = "http://cms-bucket.nosdn.127.net/catchpic/9/9d/9dcb73e71fea7b746c50bc3874f8c706.jpg?imageView&thumbnail=550x0";
-
-        inflate.setVariable(BR.remoteImageUrl, imageUrl);
+        //加载网络图片
+        inflate.setVariable(BR.remoteImageUrl, "http://cms-bucket.nosdn.127.net/catchpic/9/9d/9dcb73e71fea7b746c50bc3874f8c706.jpg?imageView&thumbnail=550x0");
 
         return inflate.getRoot();
     }
